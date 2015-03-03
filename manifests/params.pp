@@ -35,9 +35,20 @@ class gluster::params {
   # a priority in order to ensure that it is activated
   $repo_priority = absent
 
-  # these packages are the upstream names
-  $server_package = 'glusterfs-server'
-  $client_package = 'glusterfs-fuse'
+  # these packages and service are the upstream names
+  case $::osfamily {
+    'RedHat': {
+      $server_package = 'glusterfs-server'
+      $client_package = 'glusterfs-fuse'
+      $service_name   = 'glusterd'
+    }
+    'Debian': {
+      $server_package = 'glusterfs-server'
+      $client_package = 'glusterfs-client'
+      $service_name   = 'glusterfs-server'
+    }
+    default: { fail("${::osfamily} not yet supported!") }
+  }
 
   # and these packages are vendor-defined names
   if $::osfamily == 'RedHat' {
