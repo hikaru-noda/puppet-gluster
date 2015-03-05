@@ -35,6 +35,10 @@ class gluster::params {
   # a priority in order to ensure that it is activated
   $repo_priority = absent
 
+  #PPA for Ubuntu
+  $repo_ppa = 'gluster/glusterfs'
+  $repo_ppa_version = '3.6'
+
   # these packages and service are the upstream names
   case $::osfamily {
     'RedHat': {

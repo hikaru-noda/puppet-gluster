@@ -35,8 +35,20 @@ class gluster::repo (
     }
 
     'Debian': {
-      class { '::gluster::repo::apt':
-	version	=> $version
+      case $::operatingsystem {
+
+	'Debian': {
+	  class { '::gluster::repo::apt':
+	    version => $version,
+	  }
+	}
+
+	'Ubuntu': {
+	  class { '::gluster::repo::ppa':
+	    repo_ppa	      => $repo_ppa,
+	    repo_ppa_version  => $repo_ppa_version,
+	  }
+	}
       }
     }
 

@@ -46,6 +46,8 @@ class gluster  (
   $client_package         = undef,
   $pool                   = $::gluster::params::pool,
   $repo                   = $::gluster::params::repo,
+  $repo_ppa	          = $::gluster::params::repo_ppa,
+  $repo_ppa_version       = $::gluster::params::repo_ppa_version,
   $server                 = $::gluster::params::install_server,
   $server_package         = undef,
   $use_exported_resources = $::gluster::params::export_resources,
